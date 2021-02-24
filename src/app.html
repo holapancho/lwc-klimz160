@@ -2,16 +2,26 @@
 	<c-child></c-child>
 
 	</br>
+	<div class="demo-only">
+		<div class="slds-tabs_scoped">
+			<ul class="slds-tabs_scoped__nav" role="tablist">
+				<template for:each={tabs} for:item="tab">
+					<c-tab key={tabs.id} selected={tabs.selected} name={tab.name}></c-tab>
+				</template>
+			</ul>
 
-	<template for:each={tabs} for:item="tab">
-		<p key={tab.id}>
-			{tab.name}
-		</p>
-	</template>
 
+			<div id="tab-scoped" class="slds-tabs_scoped__content slds-show" role="tabpanel">
+				Item One Content
+
+
+			</div>
+
+		</div>
+	</div>
 	</br>
 
-	<div class="demo-only" style="height:12rem">
+	<div class="demo-only">
 		<div class="slds-tabs_scoped">
 			<ul class="slds-tabs_scoped__nav" role="tablist">
 				<li class="slds-tabs_scoped__item slds-is-active" title="Item One" role="presentation">
@@ -25,34 +35,6 @@
 				<li class="slds-tabs_scoped__item" title="Item Three" role="presentation">
 					<a class="slds-tabs_scoped__link" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-3"
 						id="tab-scoped-3__item">Item Three</a>
-				</li>
-				<li class="slds-tabs_scoped__item slds-tabs_scoped__overflow-button" title="More Tabs" role="presentation">
-					<div class="slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open">
-						<button class="slds-button" aria-haspopup="true">More
-<svg class="slds-button__icon slds-button__icon_x-small slds-button__icon_right" aria-hidden="true">
-<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
-</svg>
-</button>
-						<div class="slds-dropdown slds-dropdown_right">
-							<ul class="slds-dropdown__list slds-dropdown_length-with-icon-10" role="menu">
-								<li class="slds-dropdown__item" role="presentation">
-									<a href="#" role="menuitem" tabindex="-1">
-										<span class="slds-truncate" title="Item Four">Item Four</span>
-									</a>
-								</li>
-								<li class="slds-dropdown__item" role="presentation">
-									<a href="#" role="menuitem" tabindex="-1">
-										<span class="slds-truncate" title="Item Five">Item Five</span>
-									</a>
-								</li>
-								<li class="slds-dropdown__item" role="presentation">
-									<a href="#" role="menuitem" tabindex="-1">
-										<span class="slds-truncate" title="Item Six">Item Six</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-					</div>
 				</li>
 			</ul>
 			<div id="tab-scoped-1" class="slds-tabs_scoped__content slds-show" role="tabpanel"
