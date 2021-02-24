@@ -1,0 +1,7 @@
+.tab-borders-selected{
+  border-left: 1px solid #dddbda !important;
+}
+
+.tab-borders :hover{
+  border-left: 1px solid #dddbda !important;
+}

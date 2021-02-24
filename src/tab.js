@@ -24,10 +24,14 @@ export default class Tab extends LightningElement {
 
   get isActive(){
     if(this.selected){
-      return "slds-tabs_scoped__item slds-is-active";
+      return "slds-tabs_scoped__item slds-is-active tab-borders-selected";
     }else{
-      return "slds-tabs_scoped__item";
+      return "slds-tabs_scoped__item tab-borders";
     }
+  }
+
+  get ariaControls(){
+    return "tab-scoped-"+this.position;
   }
 
 }
