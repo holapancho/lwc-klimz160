@@ -1,5 +1,16 @@
 <template>
 	<c-child></c-child>
+
+	</br>
+
+	<template for:each={tabs} for:item="tab">
+		<p key={tab.id}>
+			{tab.name}
+		</p>
+	</template>
+
+	</br>
+
 	<div class="demo-only" style="height:12rem">
 		<div class="slds-tabs_scoped">
 			<ul class="slds-tabs_scoped__nav" role="tablist">
