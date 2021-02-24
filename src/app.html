@@ -1,18 +1,21 @@
 <template>
 	<c-child></c-child>
-
 	</br>
 	<div class="demo-only">
 		<div class="slds-tabs_scoped">
 			<ul class="slds-tabs_scoped__nav" role="tablist">
-				<template for:each={tabs} for:item="tab">
-					<c-tab key={tabs.id} selected={tabs.selected} name={tab.name}></c-tab>
+
+				<template for:each={tabs} for:item="tab" for:index="index">
+					<c-tab key={tab.id} data-index={index} selected-tab={selectedTab} position={index} tab={tab}
+						onclick={handleItemClicked}></c-tab>
 				</template>
+
 			</ul>
 
 
 			<div id="tab-scoped" class="slds-tabs_scoped__content slds-show" role="tabpanel">
 				Item One Content
+
 
 
 			</div>

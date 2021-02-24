@@ -1,10 +1,6 @@
 <template>
-  hola
-  <!--
-  <li key={key} class="slds-tabs_scoped__item" title="Pos {position}" role="presentation">
-   
-    <a key={position} class="slds-tabs_scoped__link" role="tab" tabindex={tabIndex} aria-selected={selected}
-      aria-controls="tab-scoped">Pos {position}</a>
+  <li key={tab.id} class={isActive} title="Pos" role="presentation">
+    <a class="slds-tabs_scoped__link" role="tab" tabindex={tabIndex} aria-selected={selected}
+      aria-controls="tab-scoped">{tab.name}</a>
   </li>
-  -->
 </template>
