@@ -2,15 +2,15 @@ import { track, api, LightningElement } from "lwc";
 
 export default class Tab extends LightningElement {
   @api tab;
-  @track selected = false;
   @api position;
   @api selectedTab;
 
-  connectedCallback(){
-    console.log(this.selectedTab);
-    console.log('position'+this.position);
+  get selected(){
     if(this.selectedTab===this.position){
-      this.selected=true;
+      return true;
+    }
+    else{
+      return false;
     }
   }
 
