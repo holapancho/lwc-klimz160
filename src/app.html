@@ -1,3 +1,56 @@
 <template>
 	<c-child></c-child>
+	<div class="demo-only" style="height:12rem">
+		<div class="slds-tabs_scoped">
+			<ul class="slds-tabs_scoped__nav" role="tablist">
+				<li class="slds-tabs_scoped__item slds-is-active" title="Item One" role="presentation">
+					<a class="slds-tabs_scoped__link" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-scoped-1"
+						id="tab-scoped-1__item">Item One</a>
+				</li>
+				<li class="slds-tabs_scoped__item" title="Item Two" role="presentation">
+					<a class="slds-tabs_scoped__link" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-2"
+						id="tab-scoped-2__item">Item Two</a>
+				</li>
+				<li class="slds-tabs_scoped__item" title="Item Three" role="presentation">
+					<a class="slds-tabs_scoped__link" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-scoped-3"
+						id="tab-scoped-3__item">Item Three</a>
+				</li>
+				<li class="slds-tabs_scoped__item slds-tabs_scoped__overflow-button" title="More Tabs" role="presentation">
+					<div class="slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open">
+						<button class="slds-button" aria-haspopup="true">More
+<svg class="slds-button__icon slds-button__icon_x-small slds-button__icon_right" aria-hidden="true">
+<use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#down"></use>
+</svg>
+</button>
+						<div class="slds-dropdown slds-dropdown_right">
+							<ul class="slds-dropdown__list slds-dropdown_length-with-icon-10" role="menu">
+								<li class="slds-dropdown__item" role="presentation">
+									<a href="#" role="menuitem" tabindex="-1">
+										<span class="slds-truncate" title="Item Four">Item Four</span>
+									</a>
+								</li>
+								<li class="slds-dropdown__item" role="presentation">
+									<a href="#" role="menuitem" tabindex="-1">
+										<span class="slds-truncate" title="Item Five">Item Five</span>
+									</a>
+								</li>
+								<li class="slds-dropdown__item" role="presentation">
+									<a href="#" role="menuitem" tabindex="-1">
+										<span class="slds-truncate" title="Item Six">Item Six</span>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div id="tab-scoped-1" class="slds-tabs_scoped__content slds-show" role="tabpanel"
+				aria-labelledby="tab-scoped-1__item">Item One Content</div>
+			<div id="tab-scoped-2" class="slds-tabs_scoped__content slds-hide" role="tabpanel"
+				aria-labelledby="tab-scoped-2__item">Item Two Content</div>
+			<div id="tab-scoped-3" class="slds-tabs_scoped__content slds-hide" role="tabpanel"
+				aria-labelledby="tab-scoped-3__item">Item Three Content</div>
+		</div>
+	</div>
+
 </template>
