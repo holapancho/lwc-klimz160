@@ -3,22 +3,28 @@ import { api, track, LightningElement } from "lwc";
 export default class Cell extends LightningElement {
   @api record;
   @api column;
-/*
+  @track result;
+
   connectedCallback(){
-    console.log(this.unproxy(this.record));
-    console.log(this.unproxy(this.column));
-  }
-*/
-  get valueToShow(){
     if(this.record && this.column){
-      let record = this.unproxy(this.record);
-      let column = this.unproxy(this.column);
-      let result = record.fields.find( f => f.columnId === column.columnId);
+      let result = this.record.fields.find( f => f.columnId === this.column.columnId);
       if(result){
-        return result.value;
+        this.result = this.unproxy(result);
       }
     }
-    return '';
+  }
+
+  itemChanged(event){
+    this.result.value = event.target.value;
+    const cellChangeEvent = new CustomEvent('cellchange', {
+        detail: {
+          result: this.result,
+          record: this.record
+      },
+
+    });
+    console.log('dispatched');
+    this.dispatchEvent(cellChangeEvent);
   }
 
   unproxy(value){

@@ -10,10 +10,17 @@
 				</template>
 			</ul>
 			<div id="tab-scoped" class="slds-tabs_scoped__content slds-show padding-content" role="tabpanel">
-				<c-table tabs={tabs} data={data} selected-tab={selectedTab}></c-table>
+				<c-table tabs={tabs} dat-array={data} selected-tab={selectedTab} oncellchange={handleCellChanged}></c-table>
 			</div>
 
 		</div>
 	</div>
 
+	</br>
+	<lightning-textarea name="input1" value={tabSetup} label="Tab setup" onblur={handleItemBlurredTabSetup}>
+	</lightning-textarea>
+	</br>
+
+	<lightning-textarea name="input2" value={dataSetup} label="Data setup" onblur={handleItemBlurredDataSetup}>
+	</lightning-textarea>
 </template>

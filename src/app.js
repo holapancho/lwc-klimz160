@@ -29,7 +29,7 @@ export default class App extends LightningElement {
     ]}
   ];
 
-  @track data = 
+  @track dataArray = 
   [
     {
       item: 1, 
@@ -75,7 +75,56 @@ export default class App extends LightningElement {
     }
   ];
 
+  get tabSetup(){
+    return JSON.stringify(this.tabs)
+  }
+
+  get dataSetup(){
+    return JSON.stringify(this.dataArray)
+  }
+
+  handleItemBlurredTabSetup(event){
+    if(event.target.value){
+      this.tabs = JSON.parse(event.target.value);
+    }
+  }
+
+  handleItemBlurredDataSetup(event){
+    if(event.target.value){
+      this.data = JSON.parse(event.target.value);
+    }
+  }
+
+
+  handleCellChanged(event){
+    console.log('event');
+    console.log(event.detail);
+    let result = event.detail.result;
+    let record = event.detail.record;
+    console.log('ssss');
+    record.fields.find( f => f.columnId === result.columnId).value = result.value;
+    console.log(record);
+    this.dataArray = this.unproxy(this.dataArray);
+    this.dataArray.find( d => d.item == record.item).fields = record.fields;
+    this.dataArray = [...this.dataArray];
+
+    console.log('ssssq');
+    console.log(this.unproxy(this.dataArray));
+  }
+
+  get data(){
+    return this.dataArray;
+  }
+
+
   handleItemClicked(event) {
     this.selectedTab = parseInt(event.target.getAttribute("data-index"));
+  }
+
+  unproxy(value){
+    if(value){
+      return JSON.parse(JSON.stringify(value));
+    }
+    return null;
   }
 }

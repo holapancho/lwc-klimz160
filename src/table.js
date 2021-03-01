@@ -3,35 +3,49 @@ import { api, track, LightningElement } from "lwc";
 export default class Table extends LightningElement {
   @api tabs;
   @api selectedTab;
-  @api data;
+  @api datArray;
+
+  get data(){
+    console.log('datarray');
+    return this.datArray;
+  }
 
   get columns(){
     if(this.tabs && !isNaN(this.selectedTab)){
       let unproxyTabs = this.unproxy(this.tabs);
       for (let [index, tab] of unproxyTabs.entries()) {
         if(index === this.selectedTab){
-          tab.columns.forEach( column => column.active = true );
+          //tab.columns.forEach( column => column.active = true );
         }
         else{
-          tab.columns.forEach( column => column.active = false );
+          tab.columns.forEach( column => column.class = "hide" );
         }
       }
       let columns = unproxyTabs
         .flatMap( t => t.columns)
         .map((column, index) => ({...column,id: index + 1}));
-      console.log(columns);
       return columns;
     }
     return [];
 
   }
 
-  get records(){
-    if(this.data){
-      console.log(this.unproxy(this.data));
-      return this.data;
-    }
-    return [];
+  handleCellChanged(event){
+    console.log('received');
+    let result = this.unproxy(event.detail.result);
+    let record = this.unproxy(event.detail.record);
+    console.log(record);
+    console.log(result);
+    const cellChangeEvent = new CustomEvent('cellchange', {
+        detail: {
+          result: result,
+          record: record
+      },
+
+    });
+
+    console.log('dispatched - again');
+    this.dispatchEvent(cellChangeEvent);
   }
 
   unproxy(value){
