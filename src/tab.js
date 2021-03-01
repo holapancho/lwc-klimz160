@@ -18,7 +18,7 @@ export default class Tab extends LightningElement {
     if(this.selected){
       return "0";
     }else{
-      return "-1";
+      return "-1"; 
     }
   }
 

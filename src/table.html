@@ -2,15 +2,27 @@
   <table class="slds-table slds-table_cell-buffer table_bordered">
     <thead>
       <tr class="slds-line-height_reset">
-        <template for:each={columns} for:item="column" for:index="index">
+        <template for:each={columns} for:item="column">
           <th key={column.id} class="" scope="col">
             <div class="slds-truncate" title={column.name}>{column.name}</div>
           </th>
         </template>
       </tr>
     </thead>
+    <tbody>
+      <template for:each={records} for:item="record">
+        <tr key={record.item} class="slds-hint-parent">
+          <template for:each={columns} for:item="column">
+            <th key={column.id} class="" scope="col">
+              <c-cell record={record} column={column}></c-cell>
+            </th>
+          </template>
+        </tr>
+      </template>
+    </tbody>
   </table>
   <br/>
+
 
   example
   <table class="slds-table slds-table_cell-buffer table_bordered">
