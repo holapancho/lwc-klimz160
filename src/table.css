@@ -1,0 +1,4 @@
+.table_bordered {
+  border-collapse: separate;
+  border-bottom: 1px solid #dddbda;
+}
