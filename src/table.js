@@ -31,7 +31,6 @@ export default class Table extends LightningElement {
   }
 
   handleCellChanged(event){
-    console.log('received');
     let result = this.unproxy(event.detail.result);
     let record = this.unproxy(event.detail.record);
     console.log(record);
@@ -44,7 +43,6 @@ export default class Table extends LightningElement {
 
     });
 
-    console.log('dispatched - again');
     this.dispatchEvent(cellChangeEvent);
   }
 

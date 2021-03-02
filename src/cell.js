@@ -28,7 +28,6 @@ export default class Cell extends LightningElement {
       },
 
     });
-    console.log('dispatched');
     this.dispatchEvent(cellChangeEvent);
   }
 
