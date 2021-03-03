@@ -5,16 +5,16 @@ export default class App extends LightningElement {
   @track tabs = 
   [{ tabId: 1, name: 'Tab 1', 
   columns:[
-    {fieldpath: '1', label:'Column 1'},
+    {fieldpath: '1', label:'Artist',
+      picklistValues : '[{"value":"","label":"Select"},{"value":"bb","label":"Bad Bunny"},{"value":"jb","label":"J Balvin"},{"value":"dl","label":"Dua Lipa"}]',
+      type: 'PICKLIST'},
     {fieldpath: '2', label:'Column 2'},
     {fieldpath: '3', label:'Column 3'}
     ]},
   { tabId: 2, name: 'Tab 2', 
   columns:[
     {fieldpath: '4', label:'Column 4', type :'TEXTAREA'},
-    {fieldpath: '5', label:'Column 5',
-    picklistValues : '[{"value":"","label":"Select"},{"value":"Full","label":"Full"},{"value":"Custom","label":"Custom"}]',
-    type: 'PICKLIST'},
+    {fieldpath: '5', label:'Column 5'},
     {fieldpath: '6', label:'Column 6'}
     ]},
   { tabId: 3, name: 'Tab 3', 
@@ -25,7 +25,9 @@ export default class App extends LightningElement {
     ]},
   { tabId: 4, name: 'Tab 4', 
   columns:[
-    {fieldpath: '1', label:'Column 1'},
+     {fieldpath: '1', label:'Artist',
+      picklistValues : '[{"value":"","label":"Select"},{"value":"bb","label":"Bad Bunny"},{"value":"jb","label":"J Balvin"},{"value":"dl","label":"Dua Lipa"}]',
+      type: 'PICKLIST'},
     {fieldpath: '5', label:'Column 5'},
     {fieldpath: '9', label:'Column 9'}
     ]}
@@ -36,7 +38,7 @@ export default class App extends LightningElement {
     {
       item: 1, 
       fields:[
-        {fieldpath: '1',value: 'item 1 - value for column 1'},
+        {fieldpath: '1',value: ''},
         {fieldpath: '2',value: 'item 1 - value for column 2'},
         {fieldpath: '3',value: 'item 1 - value for column 3'},
         {fieldpath: '4',value: 'item 1 - value for column 4'},
@@ -50,7 +52,7 @@ export default class App extends LightningElement {
     {
       item: 2, 
       fields:[
-        {fieldpath: '1',value: 'item 2 - value for column 1'},
+        {fieldpath: '1',value: 'bb'},
         {fieldpath: '2',value: 'item 2 - value for column 2'},
         {fieldpath: '3',value: 'item 2 - value for column 3'},
         {fieldpath: '4',value: 'item 2 - value for column 4'},
@@ -64,7 +66,7 @@ export default class App extends LightningElement {
     {
       item: 3, 
       fields:[
-        {fieldpath: '1',value: 'item 3 - value for column 1'},
+        {fieldpath: '1',value: 'jb'},
         {fieldpath: '2',value: 'item 3 - value for column 2'},
         {fieldpath: '3',value: 'item 3 - value for column 3'},
         {fieldpath: '4',value: 'item 3 - value for column 4'},
@@ -73,6 +75,20 @@ export default class App extends LightningElement {
         {fieldpath: '7',value: 'item 3 - value for column 7'},
         {fieldpath: '8',value: 'item 3 - value for column 8'},
         {fieldpath: '9',value: 'item 3 - value for column 9'},
+      ]
+    },
+    {
+      item: 4, 
+      fields:[
+        {fieldpath: '1',value: 'dl'},
+        {fieldpath: '2',value: 'item 4 - value for column 2'},
+        {fieldpath: '3',value: 'item 4 - value for column 3'},
+        {fieldpath: '4',value: 'item 4 - value for column 4'},
+        {fieldpath: '5',value: 'item 4 - value for column 5'},
+        {fieldpath: '6',value: 'item 4 - value for column 6'},
+        {fieldpath: '7',value: 'item 4 - value for column 7'},
+        {fieldpath: '8',value: 'item 4 - value for column 8'},
+        {fieldpath: '9',value: 'item 4 - value for column 9'},
       ]
     }
   ];

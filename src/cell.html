@@ -5,6 +5,11 @@
     </lightning-textarea>
   </template>
 
+  <template if:true={isPicklist}>
+    <lightning-combobox class="fixed-width" label="-" variant="label-hidden" value={result.value}
+      options={picklistValues} onchange={handleChange}></lightning-combobox>
+  </template>
+
   <template if:true={isInput}>
     <lightning-input class="fixed-width" type="text" label="-" variant="label-hidden" value={result.value}
       onchange={itemChanged}>

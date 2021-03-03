@@ -5,12 +5,16 @@ export default class Cell extends LightningElement {
   @api column;
   @track field;
   @track fieldType;
+  @track picklistValues;
 
   connectedCallback(){
     this.field = this.result;
     let column = this.unproxy(this.column);
-    console.log(column);
     this.fieldType = column.type || '';
+    if(this.fieldType === 'PICKLIST' && column.picklistValues){
+      this.picklistValues = JSON.parse(column.picklistValues);
+      console.log(this.unproxy(this.picklistValues));
+    }
   }
 
   get result(){
@@ -23,12 +27,27 @@ export default class Cell extends LightningElement {
     return {value:''}; //?
   }
 
+  get isPicklist(){
+    return this.fieldType === 'PICKLIST';
+  }
+
   get isTextArea(){
     return this.fieldType === 'TEXTAREA';
   }
 
   get isInput(){
     return this.fieldType === '';
+  }
+
+  handleChange(event) {
+    this.field.value = event.detail.value;
+    const cellChangeEvent = new CustomEvent('cellchange', {
+      detail: {
+          result: this.field,
+          record: this.record
+      },
+      });
+    this.dispatchEvent(cellChangeEvent);
   }
 
   itemChanged(event){
@@ -38,7 +57,6 @@ export default class Cell extends LightningElement {
           result: this.field,
           record: this.record
       },
-
     });
     this.dispatchEvent(cellChangeEvent);
   }
