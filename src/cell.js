@@ -4,19 +4,31 @@ export default class Cell extends LightningElement {
   @api record;
   @api column;
   @track field;
+  @track fieldType;
 
   connectedCallback(){
     this.field = this.result;
+    let column = this.unproxy(this.column);
+    console.log(column);
+    this.fieldType = column.type || '';
   }
 
   get result(){
     if(this.record && this.column){
-      let field = this.record.fields.find( f => f.columnId === this.column.columnId);
+      let field = this.record.fields.find( f => f.fieldpath === this.column.fieldpath);
       if(field){
         return this.unproxy(field);
       }
     }
     return {value:''}; //?
+  }
+
+  get isTextArea(){
+    return this.fieldType === 'TEXTAREA';
+  }
+
+  get isInput(){
+    return this.fieldType === '';
   }
 
   itemChanged(event){

@@ -1,5 +1,14 @@
 <template>
-  <lightning-input class="width" type="text" label="-" variant="label-hidden" value={result.value}
-    onchange={itemChanged}>
-  </lightning-input>
+  <template if:true={isTextArea}>
+    <lightning-textarea class="fixed-width" label="-" variant="label-hidden" value={result.value}
+      onchange={itemChanged}>
+    </lightning-textarea>
+  </template>
+
+  <template if:true={isInput}>
+    <lightning-input class="fixed-width" type="text" label="-" variant="label-hidden" value={result.value}
+      onchange={itemChanged}>
+    </lightning-input>
+  </template>
+
 </template>
