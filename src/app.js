@@ -14,7 +14,7 @@ export default class App extends LightningElement {
   { tabId: 2, name: 'Tab 2', 
   columns:[
     {fieldpath: '4', label:'Column 4', type :'TEXTAREA'},
-    {fieldpath: '5', label:'Column 5'},
+    {fieldpath: '5', label:'Column 5', type : 'BOOLEAN'},
     {fieldpath: '6', label:'Column 6'}
     ]},
   { tabId: 3, name: 'Tab 3', 
@@ -42,7 +42,7 @@ export default class App extends LightningElement {
         {fieldpath: '2',value: 'item 1 - value for column 2'},
         {fieldpath: '3',value: 'item 1 - value for column 3'},
         {fieldpath: '4',value: 'item 1 - value for column 4'},
-        {fieldpath: '5',value: 'item 1 - value for column 5'},
+        {fieldpath: '5',value: 'true'},
         {fieldpath: '6',value: 'item 1 - value for column 6'},
         {fieldpath: '7',value: 'item 1 - value for column 7'},
         {fieldpath: '8',value: 'item 1 - value for column 8'},
@@ -56,7 +56,7 @@ export default class App extends LightningElement {
         {fieldpath: '2',value: 'item 2 - value for column 2'},
         {fieldpath: '3',value: 'item 2 - value for column 3'},
         {fieldpath: '4',value: 'item 2 - value for column 4'},
-        {fieldpath: '5',value: 'item 2 - value for column 5'},
+        {fieldpath: '5',value: 'false'},
         {fieldpath: '6',value: 'item 2 - value for column 6'},
         {fieldpath: '7',value: 'item 2 - value for column 7'},
         {fieldpath: '8',value: 'item 2 - value for column 8'},
@@ -70,7 +70,7 @@ export default class App extends LightningElement {
         {fieldpath: '2',value: 'item 3 - value for column 2'},
         {fieldpath: '3',value: 'item 3 - value for column 3'},
         {fieldpath: '4',value: 'item 3 - value for column 4'},
-        {fieldpath: '5',value: 'item 3 - value for column 5'},
+        {fieldpath: '5',value: 'true'},
         {fieldpath: '6',value: 'item 3 - value for column 6'},
         {fieldpath: '7',value: 'item 3 - value for column 7'},
         {fieldpath: '8',value: 'item 3 - value for column 8'},
@@ -84,7 +84,7 @@ export default class App extends LightningElement {
         {fieldpath: '2',value: 'item 4 - value for column 2'},
         {fieldpath: '3',value: 'item 4 - value for column 3'},
         {fieldpath: '4',value: 'item 4 - value for column 4'},
-        {fieldpath: '5',value: 'item 4 - value for column 5'},
+        {fieldpath: '5',value: 'false'},
         {fieldpath: '6',value: 'item 4 - value for column 6'},
         {fieldpath: '7',value: 'item 4 - value for column 7'},
         {fieldpath: '8',value: 'item 4 - value for column 8'},
@@ -117,6 +117,9 @@ export default class App extends LightningElement {
   handleCellChanged(event){
     let result = event.detail.result;
     let record = event.detail.record;
+    console.log('app');
+    console.log(result);
+    console.log(record);
     record.fields.find( f => f.fieldpath === result.fieldpath).value = result.value;
     this.dataArray = this.unproxy(this.dataArray);
     this.dataArray.find( d => d.item == record.item).fields = record.fields;

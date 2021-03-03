@@ -8,20 +8,24 @@ export default class Cell extends LightningElement {
   @track picklistValues;
 
   connectedCallback(){
-    this.field = this.result;
     let column = this.unproxy(this.column);
-    this.fieldType = column.type || '';
-    if(this.fieldType === 'PICKLIST' && column.picklistValues){
+    this.fieldType = column.type || '-';
+    if(this.isPicklist && column.picklistValues){
       this.picklistValues = JSON.parse(column.picklistValues);
-      console.log(this.unproxy(this.picklistValues));
     }
+    //keep a read only copy of this field
+    this.field = this.result;
   }
 
   get result(){
-    if(this.record && this.column){
+    if(this.record && this.column && this.fieldType){
       let field = this.record.fields.find( f => f.fieldpath === this.column.fieldpath);
       if(field){
-        return this.unproxy(field);
+        let aField = this.unproxy(field);
+        if(this.isCheckbox){
+          aField.booleanValue = (aField.value === 'true');
+        }
+        return aField;
       }
     }
     return {value:''}; //?
@@ -35,12 +39,16 @@ export default class Cell extends LightningElement {
     return this.fieldType === 'TEXTAREA';
   }
 
-  get isInput(){
-    return this.fieldType === '';
+  get isCheckbox(){
+    return this.fieldType === 'BOOLEAN';
   }
 
-  handleChange(event) {
-    this.field.value = event.detail.value;
+  get isInput(){
+    return this.fieldType === '-';
+  }
+
+  handlePicklistChange(event) {
+   this.field.value = event.detail.value;
     const cellChangeEvent = new CustomEvent('cellchange', {
       detail: {
           result: this.field,
@@ -51,7 +59,13 @@ export default class Cell extends LightningElement {
   }
 
   itemChanged(event){
-    this.field.value = event.target.value;
+     if(this.isCheckbox){
+      console.log(event.detail.checked);
+      this.field.value = ''+event.detail.checked;
+    }
+    else{
+      this.field.value = event.target.value;
+    }
     const cellChangeEvent = new CustomEvent('cellchange', {
         detail: {
           result: this.field,
@@ -67,4 +81,5 @@ export default class Cell extends LightningElement {
     }
     return null;
   }
+  
 }
