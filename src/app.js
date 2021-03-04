@@ -119,7 +119,7 @@ export default class App extends LightningElement {
     let record = event.detail.record;
     record.fields.find( f => f.fieldpath === result.fieldpath).value = result.value;
     this.dataArray = this.unproxy(this.dataArray);
-    this.dataArray.find( d => d.item == record.item).fields = record.fields;
+    this.dataArray.find( d => d.id == record.id).fields = record.fields;
     this.dataArray = [...this.dataArray];
   }
 
