@@ -9,7 +9,7 @@ export default class Cell extends LightningElement {
 
   connectedCallback(){
     let column = this.unproxy(this.column);
-    this.fieldType = column.type || '-';
+    this.fieldType = column.type || 'INPUT';
     if(this.isPicklist && column.picklistValues){
       this.picklistValues = JSON.parse(column.picklistValues);
     }
@@ -40,8 +40,12 @@ export default class Cell extends LightningElement {
     return this.fieldType === 'BOOLEAN';
   }
 
+  get isDate(){
+    return this.fieldType === 'DATE';
+  }
+
   get isInput(){
-    return this.fieldType === '-';
+    return this.fieldType === 'INPUT';
   }
 
   handlePicklistChange(event) {

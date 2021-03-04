@@ -8,7 +8,7 @@ export default class App extends LightningElement {
     {fieldpath: '1', label:'Artist',
       picklistValues : '[{"value":"","label":"Select"},{"value":"bb","label":"Bad Bunny"},{"value":"jb","label":"J Balvin"},{"value":"dl","label":"Dua Lipa"}]',
       type: 'PICKLIST'},
-    {fieldpath: '2', label:'Column 2'},
+    {fieldpath: '2', label:'Column 2',type:'DATE'},
     {fieldpath: '3', label:'Column 3'}
     ]},
   { tabId: 2, name: 'Tab 2', 
@@ -39,7 +39,7 @@ export default class App extends LightningElement {
       id: 1, 
       fields:[
         {fieldpath: '1',value: ''},
-        {fieldpath: '2',value: 'item 1 - value for column 2'},
+        {fieldpath: '2',value: '2021-03-04'},
         {fieldpath: '3',value: 'item 1 - value for column 3'},
         {fieldpath: '4',value: 'item 1 - value for column 4'},
         {fieldpath: '5',value: true},
@@ -53,7 +53,7 @@ export default class App extends LightningElement {
       id: 2, 
       fields:[
         {fieldpath: '1',value: 'bb'},
-        {fieldpath: '2',value: 'item 2 - value for column 2'},
+        {fieldpath: '2',value: ''},
         {fieldpath: '3',value: 'item 2 - value for column 3'},
         {fieldpath: '4',value: 'item 2 - value for column 4'},
         {fieldpath: '5',value: false},
@@ -67,7 +67,7 @@ export default class App extends LightningElement {
       id: 3, 
       fields:[
         {fieldpath: '1',value: 'jb'},
-        {fieldpath: '2',value: 'item 3 - value for column 2'},
+        {fieldpath: '2',value: '2021-03-05'},
         {fieldpath: '3',value: 'item 3 - value for column 3'},
         {fieldpath: '4',value: 'item 3 - value for column 4'},
         {fieldpath: '5',value: true},
@@ -81,7 +81,7 @@ export default class App extends LightningElement {
       id: 4, 
       fields:[
         {fieldpath: '1',value: 'dl'},
-        {fieldpath: '2',value: 'item 4 - value for column 2'},
+        {fieldpath: '2',value: '2021-03-06'},
         {fieldpath: '3',value: 'item 4 - value for column 3'},
         {fieldpath: '4',value: 'item 4 - value for column 4'},
         {fieldpath: '5',value: false},

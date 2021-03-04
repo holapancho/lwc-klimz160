@@ -23,6 +23,11 @@
     </template>
   </template>
 
+  <template if:true={isDate}>
+    <lightning-input type="date" label="-" variant="label-hidden" value={result.value} onchange={itemChanged}>
+    </lightning-input>
+  </template>
+
   <template if:true={isInput}>
     <lightning-input class="fixed-width" type="text" label="-" variant="label-hidden" value={result.value}
       onchange={itemChanged}>
