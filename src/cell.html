@@ -11,15 +11,14 @@
   </template>
 
   <template if:true={isCheckbox}>
-    <template if:true={result.booleanValue}>
-      <lightning-input type="checkbox" label="-" variant="label-hidden" value={result.booleanValue}
-        onchange={itemChanged} checked>
+    <template if:true={result.value}>
+      <lightning-input type="checkbox" label="-" variant="label-hidden" value={result.value} onchange={itemChanged}
+        checked>
       </lightning-input>
     </template>
 
-    <template if:false={result.booleanValue}>
-      <lightning-input type="checkbox" label="-" variant="label-hidden" value={result.booleanValue}
-        onchange={itemChanged}>
+    <template if:false={result.value}>
+      <lightning-input type="checkbox" label="-" variant="label-hidden" value={result.value} onchange={itemChanged}>
       </lightning-input>
     </template>
   </template>

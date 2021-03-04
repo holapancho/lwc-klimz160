@@ -22,9 +22,6 @@ export default class Cell extends LightningElement {
       let field = this.record.fields.find( f => f.fieldpath === this.column.fieldpath);
       if(field){
         let aField = this.unproxy(field);
-        if(this.isCheckbox){
-          aField.booleanValue = (aField.value === 'true');
-        }
         return aField;
       }
     }
@@ -60,8 +57,7 @@ export default class Cell extends LightningElement {
 
   itemChanged(event){
      if(this.isCheckbox){
-      console.log(event.detail.checked);
-      this.field.value = ''+event.detail.checked;
+      this.field.value = event.detail.checked;
     }
     else{
       this.field.value = event.target.value;
