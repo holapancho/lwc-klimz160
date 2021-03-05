@@ -57,6 +57,13 @@
         step={step} onchange={itemChanged} formatter="percent" placeholder=""></lightning-input>
     </template>
 
+    <template if:true={isMultiPicklist}>
+      {result.value}
+
+      <lightning-dual-listbox label="-" variant="label-hidden" source-label="Available" selected-label="Selected"
+        value={result.multiPicklist} options={picklistValues} onchange={handleDualListBox}></lightning-dual-listbox>
+    </template>
+
     <template if:true={isInput}>
       <lightning-input class="fixed-width" type="text" label="-" variant="label-hidden" value={result.value}
         onchange={itemChanged}>

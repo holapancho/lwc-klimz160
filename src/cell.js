@@ -16,7 +16,7 @@ export default class Cell extends LightningElement {
     this.lenght = column.lenght || 0;
     this.scale = column.scale || 0;
     this.isCalculated = column.isCalculated || false;
-    if(this.isPicklist && column.picklistValues){
+    if((this.isPicklist || this.isMultiPicklist) && column.picklistValues){
       this.picklistValues = JSON.parse(column.picklistValues);
     }
     //keep a read only copy of this field
@@ -28,6 +28,14 @@ export default class Cell extends LightningElement {
       let field = this.record.fields.find( f => f.fieldpath === this.column.fieldpath);
       if(field){
         let aField = this.unproxy(field);
+        if(this.isMultiPicklist){
+            if(aField.value){
+              aField.multiPicklist = aField.value.split(';');
+            }
+            else{
+              aField.multiPicklist = [];
+            }
+        }
         return aField;
       }
     }
@@ -66,10 +74,13 @@ export default class Cell extends LightningElement {
     return this.fieldType === 'PERCENT';
   }
 
+  get isMultiPicklist(){
+    return this.fieldType === 'MULTIPICKLIST';
+  } 
+
   get isInput(){
     return this.fieldType === 'INPUT';
   }
-
 
 
   get step(){
@@ -86,6 +97,17 @@ export default class Cell extends LightningElement {
       return step;
     }
     return ".";
+  }
+
+  handleDualListBox(event){
+    this.field.value = event.detail.value.join(";");
+    const cellChangeEvent = new CustomEvent('cellchange', {
+      detail: {
+          result: this.field,
+          record: this.record
+      },
+      });
+    this.dispatchEvent(cellChangeEvent);
   }
 
   handlePicklistChange(event) {

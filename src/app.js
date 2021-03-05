@@ -33,9 +33,9 @@ export default class App extends LightningElement {
     ]},
      { tabId: 5, name: 'Tab 5', 
   columns:[
-     {fieldpath: '1', label:'Artist',
+     {fieldpath: '10', label:'Artist',
       picklistValues : '[{"value":"","label":"Select"},{"value":"bb","label":"Bad Bunny"},{"value":"jb","label":"J Balvin"},{"value":"dl","label":"Dua Lipa"}]',
-      type: 'PICKLIST'}
+      type: 'MULTIPICKLIST'}
     ]},
   ];
 
@@ -53,7 +53,7 @@ export default class App extends LightningElement {
         {fieldpath: '7',value: 1},
         {fieldpath: '8',value: ''},
         {fieldpath: '9',value: 'item 1 - value for column 9'},
-        {fieldpath: '10',value: 'item 1 - value for column 10'},
+        {fieldpath: '10',value: 'bb'},
         {fieldpath: '11',value: 'item 1 - value for column 11'}
       ]
     },
@@ -69,7 +69,7 @@ export default class App extends LightningElement {
         {fieldpath: '7',value: 2.222},
         {fieldpath: '8',value: '2021-03-05T12:25:00.000Z'},
         {fieldpath: '9',value: 'item 2 - value for column 9'},
-        {fieldpath: '10',value: 'item 2 - value for column 10'},
+        {fieldpath: '10',value: ''},
         {fieldpath: '11',value: 'item 2 - value for column 11'}
       ]
     },
@@ -85,7 +85,7 @@ export default class App extends LightningElement {
         {fieldpath: '7',value: 3.5},
         {fieldpath: '8',value: ''},
         {fieldpath: '9',value: 'item 3 - value for column 9'},
-        {fieldpath: '10',value: 'item 3 - value for column 10'},
+        {fieldpath: '10',value: 'bb;jb'},
         {fieldpath: '11',value: 'item 3 - value for column 11'}
       ]
     },
@@ -101,7 +101,7 @@ export default class App extends LightningElement {
         {fieldpath: '7',value: 0},
         {fieldpath: '8',value: '2021-03-06T12:25:00.000Z'},
         {fieldpath: '9',value: 'item 4 - value for column 9'},
-        {fieldpath: '10',value: 'item 4 - value for column 10'},
+        {fieldpath: '10',value: 'bb;jb;dl'},
         {fieldpath: '11',value: 'item 4 - value for column 11'}
       ]
     }
