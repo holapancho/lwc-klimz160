@@ -1,49 +1,68 @@
 <template>
-  <template if:true={isTextArea}>
-    <lightning-textarea class="fixed-width" label="-" variant="label-hidden" value={result.value} maxlength={lenght}
-      onchange={itemChanged}>
-    </lightning-textarea>
+
+  <template if:true={isCalculated}>
+    t
   </template>
 
-  <template if:true={isPicklist}>
-    <lightning-combobox class="fixed-width" label="-" variant="label-hidden" value={result.value}
-      options={picklistValues} onchange={handlePicklistChange}></lightning-combobox>
-  </template>
+  <template if:false={isCalculated}>
 
-  <template if:true={isCheckbox}>
-    <template if:true={result.value}>
-      <lightning-input type="checkbox" label="-" variant="label-hidden" value={result.value} onchange={itemChanged}
-        checked>
+    <template if:true={isTextArea}>
+      <lightning-textarea class="fixed-width" label="-" variant="label-hidden" value={result.value} maxlength={lenght}
+        onchange={itemChanged}>
+      </lightning-textarea>
+    </template>
+
+    <template if:true={isPicklist}>
+      <lightning-combobox class="fixed-width" label="-" variant="label-hidden" value={result.value}
+        options={picklistValues} onchange={handlePicklistChange}></lightning-combobox>
+    </template>
+
+    <template if:true={isCheckbox}>
+      <template if:true={result.value}>
+        <lightning-input type="checkbox" label="-" variant="label-hidden" value={result.value} onchange={itemChanged}
+          checked>
+        </lightning-input>
+      </template>
+
+      <template if:false={result.value}>
+        <lightning-input type="checkbox" label="-" variant="label-hidden" value={result.value} onchange={itemChanged}>
+        </lightning-input>
+      </template>
+    </template>
+
+    <template if:true={isDate}>
+      <lightning-input class="fixed-width" type="date" label="-" variant="label-hidden" value={result.value}
+        onchange={itemChanged}>
       </lightning-input>
     </template>
 
-    <template if:false={result.value}>
-      <lightning-input type="checkbox" label="-" variant="label-hidden" value={result.value} onchange={itemChanged}>
+    <template if:true={isDateTime}>
+      <lightning-input class="fixed-width" type="datetime" label="-" variant="label-hidden" value={result.value}
+        onchange={itemChanged}>
       </lightning-input>
     </template>
-  </template>
 
-  <template if:true={isDate}>
-    <lightning-input class="fixed-width" type="date" label="-" variant="label-hidden" value={result.value}
-      onchange={itemChanged}>
-    </lightning-input>
-  </template>
+    <template if:true={isDouble}>
+      <lightning-input class="fixed-width" type="number" label="-" variant="label-hidden" value={result.value}
+        step={step} onchange={itemChanged} placeholder=""></lightning-input>
+    </template>
 
-  <template if:true={isDateTime}>
-    <lightning-input class="fixed-width" type="datetime" label="-" variant="label-hidden" value={result.value}
-      onchange={itemChanged}>
-    </lightning-input>
-  </template>
+    <template if:true={isCurrency}>
+      <lightning-input class="fixed-width" type="number" label="-" variant="label-hidden" value={result.value}
+        step={step} onchange={itemChanged} formatter="currency" placeholder=""></lightning-input>
+    </template>
 
-  <template if:true={isDouble}>
-    <lightning-input class="fixed-width" type="number" label="-" variant="label-hidden" value={result.value} step={step}
-      onchange={itemChanged} placeholder=""></lightning-input>
-  </template>
+    <template if:true={isPercent}>
+      <lightning-input class="fixed-width" type="number" label="-" variant="label-hidden" value={result.value}
+        step={step} onchange={itemChanged} formatter="percent" placeholder=""></lightning-input>
+    </template>
 
-  <template if:true={isInput}>
-    <lightning-input class="fixed-width" type="text" label="-" variant="label-hidden" value={result.value}
-      onchange={itemChanged}>
-    </lightning-input>
+    <template if:true={isInput}>
+      <lightning-input class="fixed-width" type="text" label="-" variant="label-hidden" value={result.value}
+        onchange={itemChanged}>
+      </lightning-input>
+    </template>
+
   </template>
 
 </template>

@@ -8,12 +8,14 @@ export default class Cell extends LightningElement {
   @track lenght;
   @track picklistValues;
   @track scale;
+  @track isCalculated;
 
   connectedCallback(){
     let column = this.unproxy(this.column);
     this.fieldType = column.type || 'INPUT';
     this.lenght = column.lenght || 0;
     this.scale = column.scale || 0;
+    this.isCalculated = column.isCalculated || false;
     if(this.isPicklist && column.picklistValues){
       this.picklistValues = JSON.parse(column.picklistValues);
     }
@@ -56,9 +58,19 @@ export default class Cell extends LightningElement {
     return this.fieldType === 'DOUBLE';
   }
 
+  get isCurrency(){
+    return this.fieldType === 'CURRENCY';
+  }
+
+  get isPercent(){
+    return this.fieldType === 'PERCENT';
+  }
+
   get isInput(){
     return this.fieldType === 'INPUT';
   }
+
+
 
   get step(){
     if(this.scale){
@@ -71,7 +83,6 @@ export default class Cell extends LightningElement {
           step += "0";
         }
       }
-      console.log(step);
       return step;
     }
     return ".";
