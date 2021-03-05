@@ -5,11 +5,13 @@ export default class Cell extends LightningElement {
   @api column;
   @track field;
   @track fieldType;
+  @track lenght;
   @track picklistValues;
 
   connectedCallback(){
     let column = this.unproxy(this.column);
     this.fieldType = column.type || 'INPUT';
+    this.lenght = column.lenght || 0;
     if(this.isPicklist && column.picklistValues){
       this.picklistValues = JSON.parse(column.picklistValues);
     }
@@ -42,6 +44,10 @@ export default class Cell extends LightningElement {
 
   get isDate(){
     return this.fieldType === 'DATE';
+  }
+
+  get isDateTime(){
+    return this.fieldType === 'DATETIME';
   }
 
   get isInput(){

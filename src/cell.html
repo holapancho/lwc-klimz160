@@ -1,6 +1,6 @@
 <template>
   <template if:true={isTextArea}>
-    <lightning-textarea class="fixed-width" label="-" variant="label-hidden" value={result.value}
+    <lightning-textarea class="fixed-width" label="-" variant="label-hidden" value={result.value} maxlength={lenght}
       onchange={itemChanged}>
     </lightning-textarea>
   </template>
@@ -24,7 +24,14 @@
   </template>
 
   <template if:true={isDate}>
-    <lightning-input type="date" label="-" variant="label-hidden" value={result.value} onchange={itemChanged}>
+    <lightning-input class="fixed-width" type="date" label="-" variant="label-hidden" value={result.value}
+      onchange={itemChanged}>
+    </lightning-input>
+  </template>
+
+  <template if:true={isDateTime}>
+    <lightning-input class="fixed-width" type="datetime" label="-" variant="label-hidden" value={result.value}
+      onchange={itemChanged}>
     </lightning-input>
   </template>
 
