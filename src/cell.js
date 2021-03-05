@@ -7,11 +7,13 @@ export default class Cell extends LightningElement {
   @track fieldType;
   @track lenght;
   @track picklistValues;
+  @track scale;
 
   connectedCallback(){
     let column = this.unproxy(this.column);
     this.fieldType = column.type || 'INPUT';
     this.lenght = column.lenght || 0;
+    this.scale = column.scale || 0;
     if(this.isPicklist && column.picklistValues){
       this.picklistValues = JSON.parse(column.picklistValues);
     }
@@ -50,8 +52,29 @@ export default class Cell extends LightningElement {
     return this.fieldType === 'DATETIME';
   }
 
+  get isDouble(){
+    return this.fieldType === 'DOUBLE';
+  }
+
   get isInput(){
     return this.fieldType === 'INPUT';
+  }
+
+  get step(){
+    if(this.scale){
+      let step = ".";
+      for (let i = 0; i < this.scale; i++) {
+        if ((i+1) === this.scale) {
+          step += "1";
+        }
+        else{
+          step += "0";
+        }
+      }
+      console.log(step);
+      return step;
+    }
+    return ".";
   }
 
   handlePicklistChange(event) {

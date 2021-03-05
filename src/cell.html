@@ -35,6 +35,11 @@
     </lightning-input>
   </template>
 
+  <template if:true={isDouble}>
+    <lightning-input class="fixed-width" type="number" label="-" variant="label-hidden" value={result.value} step={step}
+      onchange={itemChanged} placeholder=""></lightning-input>
+  </template>
+
   <template if:true={isInput}>
     <lightning-input class="fixed-width" type="text" label="-" variant="label-hidden" value={result.value}
       onchange={itemChanged}>
