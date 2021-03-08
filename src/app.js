@@ -112,6 +112,43 @@ export default class App extends LightningElement {
         {fieldpath: '9',value: 'item 4 - value for column 9'},
         {fieldpath: '10',value: 'bb;jb;dl'},
         {fieldpath: '11',value: 'item 4 - value for column 11'}
+      ],
+      subitems : [
+        {
+          id: 5, 
+          fields:[
+            {fieldpath: '0',value: 5},
+            {fieldpath: '1',value: 'jb'},
+            {fieldpath: '2',value: '2021-03-05'},
+            {fieldpath: '3',value: 0},
+            {fieldpath: '4',value: 'item 3 - value for column 4'},
+            {fieldpath: '5',value: true},
+            {fieldpath: '6',value: 0.1},
+            {fieldpath: '7',value: 3.5},
+            {fieldpath: '8',value: ''},
+            {fieldpath: '9',value: 'item 3 - value for column 9'},
+            {fieldpath: '10',value: 'bb;jb'},
+            {fieldpath: '11',value: 'item 3 - value for column 11'}
+          ]
+        },
+
+        {
+          id: 6, 
+          fields:[
+            {fieldpath: '0',value: 6},
+            {fieldpath: '1',value: 'jb'},
+            {fieldpath: '2',value: '2021-03-05'},
+            {fieldpath: '3',value: 0},
+            {fieldpath: '4',value: 'item 3 - value for column 4'},
+            {fieldpath: '5',value: true},
+            {fieldpath: '6',value: 0.1},
+            {fieldpath: '7',value: 3.5},
+            {fieldpath: '8',value: ''},
+            {fieldpath: '9',value: 'item 3 - value for column 9'},
+            {fieldpath: '10',value: 'bb;jb'},
+            {fieldpath: '11',value: 'item 3 - value for column 11'}
+          ]
+        }
       ]
     }
   ];

@@ -6,7 +6,6 @@ export default class Table extends LightningElement {
   @api datArray;
 
   get data(){
-    console.log('datarray');
     return this.datArray;
   }
 
