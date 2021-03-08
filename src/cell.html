@@ -1,10 +1,43 @@
 <template>
 
-  <template if:true={isCalculated}>
-    t
+  <template if:true={isActionsMenu}>
+    <div class="slds-m-top_medium slds-m-bottom_x-small">
+      <div class="slds-p-around_medium lgc-bg">
+
+        <lightning-button-menu alternative-text="Action" onselect={handleMenuSelect}>
+          <template for:each={actionValues} for:item="action">
+            <lightning-menu-item id={action.id} label={action.label} value={action.value} key={action.id}>
+            </lightning-menu-item>
+          </template>
+        </lightning-button-menu>
+      </div>
+    </div>
   </template>
 
-  <template if:false={isCalculated}>
+  <template if:true={isReadOnly}>
+
+    <template if:true={isDouble}>
+      <lightning-formatted-number value={result.value} minimum-fraction-digits={scale}>
+      </lightning-formatted-number>
+    </template>
+
+    <template if:true={isCurrency}>
+      <lightning-formatted-number value={result.value} minimum-fraction-digits={scale} format-style="currency">
+      </lightning-formatted-number>
+    </template>
+
+    <template if:true={isPercent}>
+      <lightning-formatted-number value={result.value} minimum-fraction-digits={scale} format-style="percent">
+      </lightning-formatted-number>
+    </template>
+
+    <template if:true={isString}>
+      <lightning-formatted-text value={result.value}></lightning-formatted-text>
+    </template>
+
+  </template>
+
+  <template if:false={isReadOnly}>
 
     <template if:true={isTextArea}>
       <lightning-textarea class="fixed-width" label="-" variant="label-hidden" value={result.value} maxlength={lenght}
@@ -58,10 +91,14 @@
     </template>
 
     <template if:true={isMultiPicklist}>
-      {result.value}
-
       <lightning-dual-listbox label="-" variant="label-hidden" source-label="Available" selected-label="Selected"
         value={result.multiPicklist} options={picklistValues} onchange={handleDualListBox}></lightning-dual-listbox>
+    </template>
+
+    <template if:true={isString}>
+      <lightning-input class="fixed-width" type="text" label="-" variant="label-hidden" value={result.value}
+        maxlength={lenght} onchange={itemChanged}>
+      </lightning-input>
     </template>
 
     <template if:true={isInput}>

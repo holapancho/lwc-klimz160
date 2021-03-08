@@ -21,7 +21,7 @@ export default class App extends LightningElement {
   columns:[
     {fieldpath: '7', label:'Percent',precision:18,scale:9,type:'PERCENT'},
     {fieldpath: '8', label:'Date with time',type:'DATETIME'},
-    {fieldpath: '9', label:'Column 9'}
+    {fieldpath: '9', label:'Column 9',lenght:80,type:'STRING'}
     ]},
   { tabId: 4, name: 'Tab 4', 
   columns:[
@@ -29,13 +29,18 @@ export default class App extends LightningElement {
       picklistValues : '[{"value":"","label":"Select"},{"value":"bb","label":"Bad Bunny"},{"value":"jb","label":"J Balvin"},{"value":"dl","label":"Dua Lipa"}]',
       type: 'PICKLIST'},
     {fieldpath: '5', label:'Column 5', type :'BOOLEAN'},
-    {fieldpath: '9', label:'Column 9'}
+    {fieldpath: '9', label:'Column 9',lenght:80,type:'STRING'}
     ]},
      { tabId: 5, name: 'Tab 5', 
   columns:[
      {fieldpath: '10', label:'Artist',
       picklistValues : '[{"value":"","label":"Select"},{"value":"bb","label":"Bad Bunny"},{"value":"jb","label":"J Balvin"},{"value":"dl","label":"Dua Lipa"}]',
-      type: 'MULTIPICKLIST'}
+      type: 'MULTIPICKLIST'},
+    {fieldpath: '3', label:'Double',precision:12,scale:2,type:'DOUBLE',isCalculated:true},
+    {fieldpath: '6', label:'Currency',precision:18,scale:9,type:'CURRENCY',isCalculated:true},
+    {fieldpath: '7', label:'Percent',precision:18,scale:9,type:'PERCENT',isCalculated:true},
+    {fieldpath: '0', label:'Actions',type:'ACTIONSMENU',
+    actionValues : '[{"value":"add","label":"Add"},{"value":"delete","label":"Delete"}]'}
     ]},
   ];
 
@@ -44,6 +49,7 @@ export default class App extends LightningElement {
     {
       id: 1, 
       fields:[
+        {fieldpath: '0',value: 1},
         {fieldpath: '1',value: ''},
         {fieldpath: '2',value: '2021-03-04'},
         {fieldpath: '3',value: 12.12},
@@ -60,6 +66,7 @@ export default class App extends LightningElement {
     {
       id: 2, 
       fields:[
+        {fieldpath: '0',value: 2},
         {fieldpath: '1',value: 'bb'},
         {fieldpath: '2',value: ''},
         {fieldpath: '3',value: 1222.12},
@@ -76,6 +83,7 @@ export default class App extends LightningElement {
     {
       id: 3, 
       fields:[
+        {fieldpath: '0',value: 3},
         {fieldpath: '1',value: 'jb'},
         {fieldpath: '2',value: '2021-03-05'},
         {fieldpath: '3',value: 0},
@@ -92,6 +100,7 @@ export default class App extends LightningElement {
     {
       id: 4, 
       fields:[
+        {fieldpath: '0',value: 4},
         {fieldpath: '1',value: 'dl'},
         {fieldpath: '2',value: '2021-03-06'},
         {fieldpath: '3',value: 5},

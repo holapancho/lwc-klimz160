@@ -6,18 +6,22 @@ export default class Cell extends LightningElement {
   @track field;
   @track fieldType;
   @track lenght;
-  @track picklistValues;
+  @track picklistValues = [];
+  @track actionValues = [];
   @track scale;
-  @track isCalculated;
+  @track isReadOnly;
 
   connectedCallback(){
     let column = this.unproxy(this.column);
-    this.fieldType = column.type || 'INPUT';
+    this.fieldType = column.type || 'INPUT'; 
     this.lenght = column.lenght || 0;
     this.scale = column.scale || 0;
-    this.isCalculated = column.isCalculated || false;
+    this.isReadOnly = column.isCalculated || false;
     if((this.isPicklist || this.isMultiPicklist) && column.picklistValues){
       this.picklistValues = JSON.parse(column.picklistValues);
+    }
+    else if(this.isActionsMenu){
+      this.actionValues = JSON.parse(column.actionValues).map((action, index) => ({...action,id: action.value+index+this.record.id+column.id}));
     }
     //keep a read only copy of this field
     this.field = this.result;
@@ -76,12 +80,19 @@ export default class Cell extends LightningElement {
 
   get isMultiPicklist(){
     return this.fieldType === 'MULTIPICKLIST';
-  } 
+  }
+
+  get isString(){
+    return this.fieldType === 'STRING';
+  }
+
+  get isActionsMenu(){
+    return this.fieldType === 'ACTIONSMENU';
+  }
 
   get isInput(){
     return this.fieldType === 'INPUT';
   }
-
 
   get step(){
     if(this.scale){
@@ -136,6 +147,13 @@ export default class Cell extends LightningElement {
     });
     this.dispatchEvent(cellChangeEvent);
   }
+
+  handleMenuSelect(event) {
+        // retrieve the selected item's value
+        const selectedItemValue = event.detail.value;
+
+        console.log(selectedItemValue);
+    }
 
   unproxy(value){
     if(value){
