@@ -13,7 +13,7 @@ export default class Cell extends LightningElement {
 
   connectedCallback(){
     let column = this.unproxy(this.column);
-    this.fieldType = column.type || 'INPUT'; 
+    this.fieldType = column.type; 
     this.lenght = column.lenght || 0;
     this.scale = column.scale || 0;
     this.isReadOnly = column.isCalculated || false;
@@ -88,10 +88,6 @@ export default class Cell extends LightningElement {
 
   get isActionsMenu(){
     return this.fieldType === 'ACTIONSMENU';
-  }
-
-  get isInput(){
-    return this.fieldType === 'INPUT';
   }
 
   get step(){

@@ -19,15 +19,19 @@
           </template>
         </tr>
 
-        <template for:each={record.subitems} for:item="subrecord">
-          <tr key={subrecord.id} class="slds-hint-parent">
-            <template for:each={columns} for:item="column">
-              <th key={column.id} class={column.class} scope="col">
-                {subrecord.id}
-              </th>
-            </template>
-          </tr>
+        <template if:true={record.subitems}>
+          <template for:each={record.subitems} for:item="subrecord">
+            <tr key={subrecord.id} class="slds-hint-parent">
+              <template for:each={columns} for:item="column">
+                <th key={column.id} class={column.class} scope="col">
+                  <c-cell record={subrecord} column={column} oncellchange={handleCellChanged}></c-cell>
+                </th>
+              </template>
+            </tr>
+          </template>
         </template>
+
+
 
       </template>
     </tbody>

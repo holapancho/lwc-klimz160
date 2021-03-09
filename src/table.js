@@ -32,8 +32,6 @@ export default class Table extends LightningElement {
   handleCellChanged(event){
     let result = this.unproxy(event.detail.result);
     let record = this.unproxy(event.detail.record);
-    console.log(record);
-    console.log(result);
     const cellChangeEvent = new CustomEvent('cellchange', {
         detail: {
           result: result,
