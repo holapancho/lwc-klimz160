@@ -176,24 +176,17 @@ export default class App extends LightningElement {
   handleCellChanged(event){
     let result = event.detail.result;
     let record = event.detail.record;
-    console.log('record');
-    console.log(record);
     record.fields.find( f => f.fieldpath === result.fieldpath).value = result.value;
     this.dataArray = this.unproxy(this.dataArray);
-    //this.dataArray.find( d => d.id == record.id).fields = record.fields;
     let recordToUpdate = this.dataArray.find( item => item.id == record.id);
     if(recordToUpdate){
       recordToUpdate.fields = record.fields;
     }
     else{
-      //products.find(product => product.items.some(item => item.name === 'milk'));
       let recordRelated = this.dataArray.filter(item => item.subitems).find( item => item.subitems.find(subitem => subitem.id == record.id));
       if(recordRelated){
         let recordToUpdate = recordRelated.subitems.find( item => item.id == record.id);
         recordToUpdate.fields = record.fields;
-      }
-      else{
-        console.log('nothing to update');
       }
     }
     this.dataArray = [...this.dataArray];

@@ -10,11 +10,13 @@
       </tr>
     </thead>
     <tbody>
-      <template for:each={data} for:item="record">
+      <template for:each={data} for:item="record" for:index="index">
+
         <tr key={record.id} class="slds-hint-parent">
           <template for:each={columns} for:item="column">
-            <th key={column.id} class={column.class} scope="col">
-              <c-cell record={record} column={column} oncellchange={handleCellChanged}></c-cell>
+            <th key={column.id} class={column.class} scope="col" style="border-top: 1px solid #dddbda;">
+              <c-cell record={record} column={column} oncellchange={handleCellChanged}>
+              </c-cell>
             </th>
           </template>
         </tr>
@@ -30,8 +32,6 @@
             </tr>
           </template>
         </template>
-
-
 
       </template>
     </tbody>
