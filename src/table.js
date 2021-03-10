@@ -36,8 +36,6 @@ export default class Table extends LightningElement {
       let columns = unproxyTabs
         .flatMap( t => t.columns)
         .map((column, index) => ({...column,id: index + 1}));
-
-      console.log(columns);
       return columns;
     }
     return [];
@@ -49,7 +47,7 @@ export default class Table extends LightningElement {
     let unProxysortedBy = this.unproxy(this.sortedBy);
     let sorted =  unProxysortedBy ? (unProxysortedBy.sorted || '') : '';
     if(!sorted){
-      sorted = 'asc';
+      sorted = 'desc';
     }
     else{
       if(sorted == 'asc'){

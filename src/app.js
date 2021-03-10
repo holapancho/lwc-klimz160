@@ -153,7 +153,7 @@ export default class App extends LightningElement {
     }
   ];
 
-  sortedBy = {};
+  @track sortedBy = {};
 
   get tabSetup(){
     return JSON.stringify(this.tabs)
@@ -163,20 +163,49 @@ export default class App extends LightningElement {
     return JSON.stringify(this.dataArray)
   }
 
+  get data(){
+    return this.dataArray;
+  }
+
+  get sorted(){
+    return this.sortedBy;
+  }
+
+
   handleItemBlurredTabSetup(event){
     if(event.target.value){
       this.tabs = JSON.parse(event.target.value);
     }
   }
+  
 
   handleItemBlurredDataSetup(event){
     if(event.target.value){
       this.dataArray = JSON.parse(event.target.value);
     }
-  }
+  } 
+  sortByFieldpath(array, key, reverse = false){
+    array.sort((a, b) => {
+
+      console.log('a');
+      console.log(a);
+      console.log(b);
+      let x = 1;
+      let y = 2;
+      if (reverse) {
+        return x > y ? -1 : x < y ? 1 : 0;
+      } else {
+        return x < y ? -1 : x > y ? 1 : 0;
+      }
+    })
+   }
 
   handleSortChanged(event){
     this.sortedBy = this.unproxy(event.detail.sortedBy);
+    if(this.sortedBy){
+      console.log('hey!');
+      this.sortByFieldpath(this.dataArray,null,true);
+    }
   }
 
   handleCellChanged(event){
@@ -198,14 +227,7 @@ export default class App extends LightningElement {
     this.dataArray = [...this.dataArray];
   }
 
-  get data(){
-    return this.dataArray;
-  }
-
-  get sorted(){
-    return this.sortedBy;
-  }
-
+  
   handleItemClicked(event) {
     this.selectedTab = parseInt(event.target.getAttribute("data-index"));
   }
