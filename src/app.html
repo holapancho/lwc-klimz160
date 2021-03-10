@@ -10,7 +10,8 @@
 				</template>
 			</ul>
 			<div id="tab-scoped" class="slds-tabs_scoped__content slds-show padding-content" role="tabpanel">
-				<c-table tabs={tabs} dat-array={data} selected-tab={selectedTab} oncellchange={handleCellChanged}></c-table>
+				<c-table tabs={tabs} dat-array={data} selected-tab={selectedTab} sorted-by={sorted}
+					oncellchange={handleCellChanged} onsortchange={handleSortChanged}></c-table>
 			</div>
 
 		</div>

@@ -4,6 +4,7 @@ export default class Table extends LightningElement {
   @api tabs;
   @api selectedTab;
   @api datArray;
+  @api sortedBy;
 
   get data(){
     return this.datArray;
@@ -12,21 +13,64 @@ export default class Table extends LightningElement {
   get columns(){
     if(this.tabs && !isNaN(this.selectedTab)){
       let unproxyTabs = this.unproxy(this.tabs);
+      let unproxySortedBy = this.unproxy(this.sortedBy);
       for (let [index, tab] of unproxyTabs.entries()) {
-        if(index === this.selectedTab){
-          //tab.columns.forEach( column => column.active = true );
+        tab.columns.forEach(column => column.sortable = column.sortable || false);
+        tab.columns.filter(column => column.sortable)
+          .forEach( column => {column.class = "slds-is-resizable slds-is-sortable"; column.sortedSelected = false});
+        if(unproxySortedBy){
+          let ascValue = unproxySortedBy.sorted == 'asc' || false; 
+          let descValue = unproxySortedBy.sorted == 'desc' || false;
+          tab.columns.filter(column => column.sortable).filter(column => column.fieldpath == unproxySortedBy.fieldpath)
+          .forEach(column => {
+            column.sortedSelected = true; 
+            column.isAsc = ascValue; 
+            column.isDesc = descValue; });
         }
-        else{
+        
+       
+        if(index !== this.selectedTab){
           tab.columns.forEach( column => column.class = "hide" );
         }
       }
       let columns = unproxyTabs
         .flatMap( t => t.columns)
         .map((column, index) => ({...column,id: index + 1}));
+
+      console.log(columns);
       return columns;
     }
     return [];
 
+  }
+
+  handleColumnClick(event){
+    let fieldpath = event.currentTarget.dataset.fieldpath;
+    let unProxysortedBy = this.unproxy(this.sortedBy);
+    let sorted =  unProxysortedBy ? (unProxysortedBy.sorted || '') : '';
+    if(!sorted){
+      sorted = 'asc';
+    }
+    else{
+      if(sorted == 'asc'){
+        sorted = 'desc';
+      }
+      else{
+        sorted = 'asc';
+      }
+    }
+
+    let sortedBy = {fieldpath, sorted}
+
+    console.log(sortedBy);
+
+    const sortChangeEvent = new CustomEvent('sortchange', {
+        detail: {
+          sortedBy
+      },
+    });
+
+    this.dispatchEvent(sortChangeEvent);
   }
 
   handleCellChanged(event){
@@ -37,7 +81,6 @@ export default class Table extends LightningElement {
           result: result,
           record: record
       },
-
     });
 
     this.dispatchEvent(cellChangeEvent);

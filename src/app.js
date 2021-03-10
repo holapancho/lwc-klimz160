@@ -21,7 +21,7 @@ export default class App extends LightningElement {
   columns:[
     {fieldpath: '7', label:'Percent',precision:18,scale:9,type:'PERCENT'},
     {fieldpath: '8', label:'Date with time',type:'DATETIME'},
-    {fieldpath: '9', label:'Column 9',lenght:80,type:'STRING'}
+    {fieldpath: '9', label:'Column 9',lenght:80,type:'STRING',sortable:true}
     ]},
   { tabId: 4, name: 'Tab 4', 
   columns:[
@@ -29,7 +29,7 @@ export default class App extends LightningElement {
       picklistValues : '[{"value":"","label":"Select"},{"value":"bb","label":"Bad Bunny"},{"value":"jb","label":"J Balvin"},{"value":"dl","label":"Dua Lipa"}]',
       type: 'PICKLIST'},
     {fieldpath: '5', label:'Column 5', type :'BOOLEAN'},
-    {fieldpath: '9', label:'Column 9',lenght:80,type:'STRING'}
+    {fieldpath: '9', label:'Column 9',lenght:80,type:'STRING',sortable:true}
     ]},
      { tabId: 5, name: 'Tab 5', 
   columns:[
@@ -153,6 +153,8 @@ export default class App extends LightningElement {
     }
   ];
 
+  sortedBy = {};
+
   get tabSetup(){
     return JSON.stringify(this.tabs)
   }
@@ -171,6 +173,10 @@ export default class App extends LightningElement {
     if(event.target.value){
       this.dataArray = JSON.parse(event.target.value);
     }
+  }
+
+  handleSortChanged(event){
+    this.sortedBy = this.unproxy(event.detail.sortedBy);
   }
 
   handleCellChanged(event){
@@ -196,6 +202,9 @@ export default class App extends LightningElement {
     return this.dataArray;
   }
 
+  get sorted(){
+    return this.sortedBy;
+  }
 
   handleItemClicked(event) {
     this.selectedTab = parseInt(event.target.getAttribute("data-index"));
