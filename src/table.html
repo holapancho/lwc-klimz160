@@ -9,7 +9,7 @@
             <template if:false={column.sortedSelected}>
               <th key={column.id} aria-label={column.label} aria-sort="none" class={column.class} scope="col">
                 <a class="slds-th__action slds-text-link_reset" href="javascript:void(0);"
-                  data-fieldpath={column.fieldpath} onclick={handleColumnClick} role="button">
+                  data-fieldpath={column.fieldpath} data-type={column.type} onclick={handleColumnClick} role="button">
                   <span class="slds-assistive-text">Sort by: </span>
                   <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
                     <span class="slds-truncate" title={column.label} >{column.label}</span>
@@ -25,8 +25,8 @@
               <template if:true={column.isAsc}>
                 <th key={column.id} aria-label={column.label} aria-sort="ascending" class={column.class} scope="col">
                   <a class="slds-th__action slds-text-link_reset slds-is-sorted slds-is-sorted_asc"
-                    href="javascript:void(0);" data-fieldpath={column.fieldpath} onclick={handleColumnClick}
-                    role="button">
+                    href="javascript:void(0);" data-fieldpath={column.fieldpath} data-type={column.type}
+                    onclick={handleColumnClick} role="button">
                     <span class="slds-assistive-text">Sort by: </span>
                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
                       <span class="slds-truncate" title={column.label} >{column.label}</span>
@@ -41,8 +41,8 @@
               <template if:true={column.isDesc}>
                 <th key={column.id} aria-label={column.label} aria-sort="descending" class={column.class} scope="col">
                   <a class="slds-th__action slds-text-link_reset slds-is-sorted slds-is-sorted_desc"
-                    href="javascript:void(0);" data-fieldpath={column.fieldpath} onclick={handleColumnClick}
-                    role="button">
+                    href="javascript:void(0);" data-fieldpath={column.fieldpath} data-type={column.type}
+                    onclick={handleColumnClick} role="button">
                     <span class="slds-assistive-text">Sort by: </span>
                     <div class="slds-grid slds-grid_vertical-align-center slds-has-flexi-truncate">
                       <span class="slds-truncate" title={column.label} >{column.label}</span>

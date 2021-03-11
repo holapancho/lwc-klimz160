@@ -44,6 +44,7 @@ export default class Table extends LightningElement {
 
   handleColumnClick(event){
     let fieldpath = event.currentTarget.dataset.fieldpath;
+    let type = event.currentTarget.dataset.type;
     let unProxysortedBy = this.unproxy(this.sortedBy);
     let sorted =  unProxysortedBy ? (unProxysortedBy.sorted || '') : '';
     if(!sorted){
@@ -58,7 +59,7 @@ export default class Table extends LightningElement {
       }
     }
 
-    let sortedBy = {fieldpath, sorted}
+    let sortedBy = {fieldpath, sorted, type}
 
     console.log(sortedBy);
 

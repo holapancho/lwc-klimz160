@@ -24,7 +24,15 @@ export default class Cell extends LightningElement {
       this.actionValues = JSON.parse(column.actionValues).map((action, index) => ({...action,id: action.value+index+this.record.id+column.id}));
     }
     //keep a read only copy of this field
+
+    console.log('column');
+    console.log(column);
+
+
+    console.log('unproxy');
+    console.log(this.unproxy(this.record));
     this.field = this.result;
+
   }
 
   get result(){
@@ -145,10 +153,8 @@ export default class Cell extends LightningElement {
   }
 
   handleMenuSelect(event) {
-        // retrieve the selected item's value
-        const selectedItemValue = event.detail.value;
-
-        console.log(selectedItemValue);
+      const selectedItemValue = event.detail.value;
+      console.log(selectedItemValue);
     }
 
   unproxy(value){

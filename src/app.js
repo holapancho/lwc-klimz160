@@ -150,6 +150,58 @@ export default class App extends LightningElement {
           ]
         }
       ]
+    },
+    {
+      id: 7, 
+      fields:[
+        {fieldpath: '0',value: 1},
+        {fieldpath: '1',value: ''},
+        {fieldpath: '2',value: '2021-03-04'},
+        {fieldpath: '3',value: 12.12},
+        {fieldpath: '4',value: 'item 1 - value for column 4'},
+        {fieldpath: '5',value: true},
+        {fieldpath: '6',value: 1222.14542},
+        {fieldpath: '7',value: 1},
+        {fieldpath: '8',value: ''},
+        {fieldpath: '9',value: 'item 1 - value for column 9'},
+        {fieldpath: '10',value: 'bb'},
+        {fieldpath: '11',value: 'item 1 - value for column 11'}
+      ]
+    },
+    {
+      id: 8, 
+      fields:[
+        {fieldpath: '0',value: 1},
+        {fieldpath: '1',value: ''},
+        {fieldpath: '2',value: '2021-03-04'},
+        {fieldpath: '3',value: 12.12},
+        {fieldpath: '4',value: 'item 1 - value for column 4'},
+        {fieldpath: '5',value: false},
+        {fieldpath: '6',value: 1222.14542},
+        {fieldpath: '7',value: 1},
+        {fieldpath: '8',value: ''},
+        {fieldpath: '9',value: 'item 1 - value for column 9'},
+        {fieldpath: '10',value: 'bb'},
+        {fieldpath: '11',value: 'item 1 - value for column 11'}
+      ]
+    }
+    ,
+    {
+      id: 9, 
+      fields:[
+        {fieldpath: '0',value: 1},
+        {fieldpath: '1',value: ''},
+        {fieldpath: '2',value: '2021-03-04'},
+        {fieldpath: '3',value: 12.12},
+        {fieldpath: '4',value: 'item 1 - value for column 4'},
+        {fieldpath: '5',value: false},
+        {fieldpath: '6',value: 1222.14542},
+        {fieldpath: '7',value: 1},
+        {fieldpath: '8',value: ''},
+        {fieldpath: '9',value: 'item 1 - value for column 9'},
+        {fieldpath: '10',value: 'jb'},
+        {fieldpath: '11',value: 'item 1 - value for column 11'}
+      ]
     }
   ];
 
@@ -186,12 +238,13 @@ export default class App extends LightningElement {
   } 
   sortByFieldpath(array, key, reverse = false){
     array.sort((a, b) => {
-
       console.log('a');
-      console.log(a);
+      console.log(a.fields.find( f => f.fieldpath === key));
       console.log(b);
-      let x = 1;
-      let y = 2;
+      let x = a.fields.find( f => f.fieldpath === key).value;
+      let y = b.fields.find( f => f.fieldpath === key).value;
+      x = isNaN(x) ? x.toLocaleUpperCase() : x;
+      y = isNaN(y) ? y.toLocaleUpperCase() : y;
       if (reverse) {
         return x > y ? -1 : x < y ? 1 : 0;
       } else {
@@ -203,8 +256,10 @@ export default class App extends LightningElement {
   handleSortChanged(event){
     this.sortedBy = this.unproxy(event.detail.sortedBy);
     if(this.sortedBy){
-      console.log('hey!');
-      this.sortByFieldpath(this.dataArray,null,true);
+      let dataArray = this.dataArray;
+      let reverse = this.sortedBy.sorted == 'asc' || false
+      this.sortByFieldpath(dataArray,this.sortedBy.fieldpath,reverse);
+      this.dataArray = dataArray;
     }
   }
 
